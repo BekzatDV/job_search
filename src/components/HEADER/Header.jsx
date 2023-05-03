@@ -12,9 +12,20 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import "./Header.css";
+import { Link } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = [
+  { name: "Домой", link: "/", id: 1 },
+  { name: "Найти работу", link: "/products", id: 2 },
+  { name: "Доступтные ваканции", link: "/f", id: 3 },
+];
+const settings = [
+  { name: "Профиль", link: "/l", id: 1 },
+  { name: "Аккаунт", link: "/o", id: 2 },
+  { name: "Панель", link: "/ol", id: 3 },
+  { name: "Выйти", link: "/lol", id: 4 },
+];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -36,11 +47,15 @@ function Header() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+    <AppBar className="NavMainContainer" position="static">
+      <Container className="NavContainer" maxWidth="xl">
+        <Toolbar className="NavToolbar" disableGutters>
+          <AdbIcon
+            className="NavLogoImg"
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
           <Typography
+            className="NavLogoText"
             variant="h6"
             noWrap
             component="a"
@@ -55,11 +70,16 @@ function Header() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            ЛОГО
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          {/* ===========================ADAPTIV======================================== */}
+          <Box
+            className="NavBlockBurgerMenu"
+            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+          >
             <IconButton
+              className="NavBurgerMenuBtn"
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -67,9 +87,10 @@ function Header() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+              <MenuIcon className="NavBurgerMenuBtnIcon" />
             </IconButton>
             <Menu
+              className="NavBurgerMenuItems"
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -87,15 +108,30 @@ function Header() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {pages.map((page, index) => (
+                <Link key={index} to={page.link}>
+                  <MenuItem
+                    className="NavBurgerMenuItemsMenu"
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                  >
+                    <Typography
+                      className="NavBurgerMenuItemsBtn"
+                      textAlign="center"
+                    >
+                      {page.name}
+                    </Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AdbIcon
+            className="NavBurgerMenuLogoImg"
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+          />
           <Typography
+            className="NavBurgerMenuLogoText"
             variant="h5"
             noWrap
             component="a"
@@ -111,27 +147,47 @@ function Header() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            ЛОГО
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+          {/* ===========================ADAPTIV======================================== */}
+
+          <Box
+            className="NavItemsBlock"
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+          >
+            {pages.map((page, index) => (
+              <Link key={index} to={page.link}>
+                <Button
+                  className="NavItemsBtn"
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page.name}
+                </Button>
+              </Link>
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <Box className="NavSettingsMenuBlock" sx={{ flexGrow: 0 }}>
+            <Tooltip
+              className="NavSettingsMenuAvatarBlock"
+              title="Открыть профиль"
+            >
+              <IconButton
+                className="NavSettingsMenuAvatarBtn"
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0 }}
+              >
+                <Avatar
+                  className="NavSettingsMenuAvatar"
+                  alt="Remy Sharp"
+                  src="/static/images/avatar/2.jpg"
+                />
               </IconButton>
             </Tooltip>
             <Menu
+              className="NavSettingsMenuItemsBlock"
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -147,10 +203,21 @@ function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+              {settings.map((setting, index) => (
+                <Link key={index} to={setting.link}>
+                  <MenuItem
+                    className="NavSettingsMenuItem"
+                    key={setting}
+                    onClick={handleCloseUserMenu}
+                  >
+                    <Typography
+                      className="NavSettingsMenuItemBtn"
+                      textAlign="center"
+                    >
+                      {setting.name}
+                    </Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
