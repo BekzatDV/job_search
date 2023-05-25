@@ -50,10 +50,12 @@ function Header() {
     <AppBar className="NavMainContainer" position="static">
       <Container className="NavContainer" maxWidth="xl">
         <Toolbar className="NavToolbar" disableGutters>
-          <AdbIcon
+          {/* ====================================logo iocn======================================== */}
+          {/* <AdbIcon
             className="NavLogoImg"
             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-          />
+          /> */}
+          {/* ====================================logo iocn======================================== */}
           <Typography
             className="NavLogoText"
             variant="h6"
@@ -70,7 +72,7 @@ function Header() {
               textDecoration: "none",
             }}
           >
-            ЛОГО
+            EMPLOYERS.KG
           </Typography>
 
           {/* ===========================ADAPTIV======================================== */}
@@ -126,10 +128,14 @@ function Header() {
               ))}
             </Menu>
           </Box>
+          {/* ====================================logo iocn======================================== */}
+          {/* 
           <AdbIcon
             className="NavBurgerMenuLogoImg"
             sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-          />
+          /> */}
+          {/* ====================================logo iocn======================================== */}
+
           <Typography
             className="NavBurgerMenuLogoText"
             variant="h5"
@@ -147,7 +153,7 @@ function Header() {
               textDecoration: "none",
             }}
           >
-            ЛОГО
+            EMPLOYERS.KG
           </Typography>
           {/* ===========================ADAPTIV======================================== */}
 
